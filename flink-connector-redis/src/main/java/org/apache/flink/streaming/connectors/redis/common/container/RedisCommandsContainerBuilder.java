@@ -66,10 +66,20 @@ public class RedisCommandsContainerBuilder {
         genericObjectPoolConfig.setMaxIdle(jedisPoolConfig.getMaxIdle());
         genericObjectPoolConfig.setMaxTotal(jedisPoolConfig.getMaxTotal());
         genericObjectPoolConfig.setMinIdle(jedisPoolConfig.getMinIdle());
+        genericObjectPoolConfig.setTestOnBorrow(jedisPoolConfig.getTestOnBorrow());
+        genericObjectPoolConfig.setTestOnReturn(jedisPoolConfig.getTestOnReturn());
+
+        if (jedisPoolConfig.getTestWhileIdle()) {
+            // default parameters from redis.clients.jedis.JedisPoolConfig
+            genericObjectPoolConfig.setTestWhileIdle(true);
+            genericObjectPoolConfig.setMinEvictableIdleTimeMillis(60000);
+            genericObjectPoolConfig.setTimeBetweenEvictionRunsMillis(30000);
+            genericObjectPoolConfig.setNumTestsPerEvictionRun(-1);
+        }
 
         JedisPool jedisPool = new JedisPool(genericObjectPoolConfig, jedisPoolConfig.getHost(),
-            jedisPoolConfig.getPort(), jedisPoolConfig.getConnectionTimeout(), jedisPoolConfig.getPassword(),
-            jedisPoolConfig.getDatabase());
+          jedisPoolConfig.getPort(), jedisPoolConfig.getConnectionTimeout(), jedisPoolConfig.getPassword(),
+          jedisPoolConfig.getDatabase());
         return new RedisContainer(jedisPool);
     }
 
@@ -87,13 +97,23 @@ public class RedisCommandsContainerBuilder {
         genericObjectPoolConfig.setMaxIdle(jedisClusterConfig.getMaxIdle());
         genericObjectPoolConfig.setMaxTotal(jedisClusterConfig.getMaxTotal());
         genericObjectPoolConfig.setMinIdle(jedisClusterConfig.getMinIdle());
+        genericObjectPoolConfig.setTestOnBorrow(jedisClusterConfig.getTestOnBorrow());
+        genericObjectPoolConfig.setTestOnReturn(jedisClusterConfig.getTestOnReturn());
+
+        if (jedisClusterConfig.getTestWhileIdle()) {
+            // default parameters from redis.clients.jedis.JedisPoolConfig
+            genericObjectPoolConfig.setTestWhileIdle(true);
+            genericObjectPoolConfig.setMinEvictableIdleTimeMillis(60000);
+            genericObjectPoolConfig.setTimeBetweenEvictionRunsMillis(30000);
+            genericObjectPoolConfig.setNumTestsPerEvictionRun(-1);
+        }
 
         JedisCluster jedisCluster = new JedisCluster(jedisClusterConfig.getNodes(),
-                jedisClusterConfig.getConnectionTimeout(),
-                jedisClusterConfig.getConnectionTimeout(),
-                jedisClusterConfig.getMaxRedirections(),
-                jedisClusterConfig.getPassword(),
-                genericObjectPoolConfig);
+          jedisClusterConfig.getConnectionTimeout(),
+          jedisClusterConfig.getConnectionTimeout(),
+          jedisClusterConfig.getMaxRedirections(),
+          jedisClusterConfig.getPassword(),
+          genericObjectPoolConfig);
         return new RedisClusterContainer(jedisCluster);
     }
 
@@ -112,10 +132,21 @@ public class RedisCommandsContainerBuilder {
         genericObjectPoolConfig.setMaxTotal(jedisSentinelConfig.getMaxTotal());
         genericObjectPoolConfig.setMinIdle(jedisSentinelConfig.getMinIdle());
 
+        genericObjectPoolConfig.setTestOnBorrow(jedisSentinelConfig.getTestOnBorrow());
+        genericObjectPoolConfig.setTestOnReturn(jedisSentinelConfig.getTestOnReturn());
+
+        if (jedisSentinelConfig.getTestWhileIdle()) {
+            // default parameters from redis.clients.jedis.JedisPoolConfig
+            genericObjectPoolConfig.setTestWhileIdle(true);
+            genericObjectPoolConfig.setMinEvictableIdleTimeMillis(60000);
+            genericObjectPoolConfig.setTimeBetweenEvictionRunsMillis(30000);
+            genericObjectPoolConfig.setNumTestsPerEvictionRun(-1);
+        }
+
         JedisSentinelPool jedisSentinelPool = new JedisSentinelPool(jedisSentinelConfig.getMasterName(),
-            jedisSentinelConfig.getSentinels(), genericObjectPoolConfig,
-            jedisSentinelConfig.getConnectionTimeout(), jedisSentinelConfig.getSoTimeout(),
-            jedisSentinelConfig.getPassword(), jedisSentinelConfig.getDatabase());
+          jedisSentinelConfig.getSentinels(), genericObjectPoolConfig,
+          jedisSentinelConfig.getConnectionTimeout(), jedisSentinelConfig.getSoTimeout(),
+          jedisSentinelConfig.getPassword(), jedisSentinelConfig.getDatabase());
         return new RedisContainer(jedisSentinelPool);
     }
 }
