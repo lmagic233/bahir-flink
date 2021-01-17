@@ -90,9 +90,9 @@ public class RedisCommandDescription implements Serializable {
             }
         }
 
-        if (redisCommand.equals(RedisCommand.DESCRBY_EX)) {
+        if (redisCommand.equals(RedisCommand.DECRBY_EX)) {
             if (additionalTTL == null) {
-                throw new IllegalArgumentException("INCRBY_EX command should have time to live (TTL)");
+                throw new IllegalArgumentException("DECRBY_EX command should have time to live (TTL)");
             }
         }
     }

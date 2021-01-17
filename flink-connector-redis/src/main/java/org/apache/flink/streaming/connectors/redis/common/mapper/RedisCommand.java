@@ -79,7 +79,7 @@ public enum RedisCommand {
      */
     HSET(RedisDataType.HASH),
 
-    HINCRBY(RedisDataType.HINCRBY),
+    HINCRBY(RedisDataType.HASH),
 
     /**
      * Delta plus for specified key.
@@ -99,7 +99,7 @@ public enum RedisCommand {
     /**
      * decrease with fixed num for specified key and expire the key with fixed time.
      */
-    DESCRBY_EX(RedisDataType.STRING);
+    DECRBY_EX(RedisDataType.STRING);
 
 
     /**

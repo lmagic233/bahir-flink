@@ -31,7 +31,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisConfigBase;
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisSentinelConfig;
-import org.apache.flink.streaming.connectors.redis.common.hanlder.FlinkJedisConfigHandler;
+import org.apache.flink.streaming.connectors.redis.common.handler.FlinkJedisConfigHandler;
 
 public class FlinkJedisSentinelConfigHandler implements FlinkJedisConfigHandler {
 

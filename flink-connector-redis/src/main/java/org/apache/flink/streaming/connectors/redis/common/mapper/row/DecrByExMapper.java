@@ -25,11 +25,11 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.RedisCommand;
 public class DecrByExMapper extends RowRedisMapper {
 
     public DecrByExMapper() {
-        super(RedisCommand.DESCRBY_EX);
+        super(RedisCommand.DECRBY_EX);
     }
 
     public DecrByExMapper(Integer ttl) {
-        super(ttl, RedisCommand.DESCRBY_EX);
+        super(ttl, RedisCommand.DECRBY_EX);
     }
 
 }

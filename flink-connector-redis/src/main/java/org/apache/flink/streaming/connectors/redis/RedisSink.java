@@ -189,7 +189,7 @@ public class RedisSink<IN> extends RichSinkFunction<IN> {
             case DECRBY:
                 this.redisCommandsContainer.decrBy(key, Long.valueOf(value));
                 break;
-            case DESCRBY_EX:
+            case DECRBY_EX:
                 this.redisCommandsContainer.decrByEx(key, Long.valueOf(value), optAdditionalTTL.orElse(this.additionalTTL));
                 break;
             default:

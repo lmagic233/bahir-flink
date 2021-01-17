@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.streaming.connectors.redis.common.hanlder;
+package org.apache.flink.streaming.connectors.redis.common.handler;
 
 import java.io.Serializable;
 import java.util.Collections;

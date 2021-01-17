@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisClusterConfig;
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisConfigBase;
-import org.apache.flink.streaming.connectors.redis.common.hanlder.FlinkJedisConfigHandler;
+import org.apache.flink.streaming.connectors.redis.common.handler.FlinkJedisConfigHandler;
 import org.apache.flink.util.Preconditions;
 
 /**

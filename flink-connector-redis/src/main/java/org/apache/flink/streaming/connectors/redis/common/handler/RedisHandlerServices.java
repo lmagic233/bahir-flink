@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.streaming.connectors.redis.common.hanlder;
+package org.apache.flink.streaming.connectors.redis.common.handler;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -132,7 +132,7 @@ public class RedisHandlerServices<T> {
 
         if (redisList.isEmpty()) {
             throw new RuntimeException(
-                    String.format("No redis hanlder implements '%s'.", redisClass.getCanonicalName()));
+                    String.format("No redis handler implements '%s'.", redisClass.getCanonicalName()));
         }
 
         return (List<T>) redisList;
